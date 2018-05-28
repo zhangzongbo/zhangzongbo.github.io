@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post.Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[linux解决unzip中文乱码]]></title>
+    <url>%2Flinux%E8%A7%A3%E5%86%B3unzip%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%2F</url>
+    <content type="text"><![CDATA[linux解压神器：unar 用过linux的同学可能多多少少接触过linux下文档的压缩归档，通常来说我们最喜欢的还是用tar命令进行文件的归档。可有些时候，我们也不得不面对windows下常用压缩格式.zip文档。这时候同学们最先想到的肯定就是linux自带的unzip，使用命令unzip files.zip解压.zip文档一气呵成，合情合理。unzip命令在大多数情况下也不会让我们失望。解压过程优雅迅捷。可是随着我们继续使用unzip，我们会发现一个unzip致命的缺陷：当.zip包中有中文命名的文件时，解压出来的文件名会乱码。效果如图： 网上有人给出了原因： 原因是unzip试图将zip文件中用 oem(ibm-dos) codepage 编码的文件名转换成自己的内部编码。可惜unzip只能转换极少数几种codepage，中文的 cp936 不在其列。 甚至还给出了解决方案： 修改unzip的源码：在unzip.cpp源文件的ZRESULT TUnzip::Get方法。 重新编译unzip，在编译时指定参数：make -DExt_ASCII_TO_Native。 解压时指定参数：类似与这样unzip -O CP936 xxx.zip (GBK, GB18030也可以)。 以上方法有些过于复杂，有些实测没有效果。这里不予推荐。这里推荐的是：12sudo apt install unarunar xxx.zip 使用unar后，解压中文就不会出现乱码啦，效果如图：]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[hexo博客进阶--SEO优化]]></title>
+    <url>%2Fhexo%E5%8D%9A%E5%AE%A2%E8%BF%9B%E9%98%B6-SEO%E4%BC%98%E5%8C%96%2F</url>
+    <content type="text"><![CDATA[搜索引擎优化（英语：search engine optimization，缩写为SEO），是一种通过了解搜索引擎的运作规则来调整网站，以及提高目的网站在有关搜索引擎内排名的方式。由于不少研究发现，搜索引擎的用户往往只会留意搜索结果最前面的几个条目，所以不少网站都希望通过各种形式来影响搜索引擎的排序，让自己的网站可以有优秀的搜索排名。当中尤以各种依靠广告维生的网站为甚。 优化你的urlseo搜索引擎优化认为，网站的最佳结构是用户从首页点击三次就可以到达任何一个页面，但是我们使用hexo编译的站点打开文章的url是：sitename/year/mounth/day/title四层的结构，这样的url结构很不利于seo，爬虫就会经常爬不到我们的文章，于是，我们可以将url直接改成sitename/title的形式，并且title最好是用英文，在站点配置文件下修改permalink如下： 1234url: https://www.zobgo.comroot: /permalink: :title.htmlpermalink_defaults: 注意：修改后文章的阅读量和评论会被清空，原因在于leanCloud的文章评论和阅读量是根据文章title和path记录的，之前文章阅读量和文章评论还绑定在旧的路径下．解决方法是打开leancloud，修改对应文章的路径 修改前路径：1/2018/05/17/hello-world/ 修改后路径：1/hello-world/ 这样评论和访问量就能正常显示了 添加站点地图sitemap.xml 安装sitemap站点地图自动生成插件 12$ npm install hexo-generator-sitemap --save$ npm install hexo-generator-baidu-sitemap --save 在主题配置文件中添加一下配置 12345sitemap: path: sitemap.xmlbaidusitemap: path: baidusitemap.xml 然后在站点配置文件中修改url为你的域名 1234# URL## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;url: https://zobgo.comroot: / 配置完成后，1$ hexo g 会在your-hexo-site\public 中生成sitemap.xml 和 baidusitemap.xml;其中sitemap.xml是一会要提交给google的，baidusitemap.xml当然就是提交给Baidu的了； 在your-hexo-site/source中新建文件robots.txt,内容如下： 请把其中我的域名换成你自己的 123456789101112131415User-agent: *Allow: /Allow: /archives/Allow: /categories/Allow: /tags/Disallow: /vendors/Disallow: /js/Disallow: /css/Disallow: /fonts/Disallow: /vendors/Disallow: /fancybox/Sitemap: https://zobgo.com/sitemap.xmlSitemap: https://zobgo.com/baidusitemap.xml 给非友情链接的出站链接添加 “nofollow” 标签参考这篇博文 提交你的sitemap.xml登录google webmaster，在对应位置提交sitemap 和 robots.txt 通过SEO优化，在谷歌搜索文章标题，我们的文章排在搜索结果的第一位：]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>SEO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hexo-next接入评论和搜索服务]]></title>
+    <url>%2FHexo-next%E6%8E%A5%E5%85%A5%E8%AF%84%E8%AE%BA%E5%92%8C%E6%90%9C%E7%B4%A2%E6%9C%8D%E5%8A%A1%2F</url>
+    <content type="text"><![CDATA[添加阅读量展示：使用LeanCloud hexo-next 6.0 集成了leancloud_visitors firestore busuanzi_count 三种统计插件，这里我们选择leanCloud在完成注册LeanCloud帐号并验证邮箱之后，登录我们的LeanCloud帐号，进行简单的配置之后拿到AppID以及AppKey这两个参数就可以可正常使用文章阅读量统计的功能了。 注册LeanCloud：完成了注册和激活邮箱，接下来我们需要进入控制台创建一个应用 创建应用这里我已经创建过一个test应用（你可以随意起名），直接点进去 建立class:点击控制台的存储标签，我们需要一个名为Counter的class，注意这里不要自定class的名字，必须为Counter 绑定AppID和AppKey:打开控制台的设置标签栏，应用Key查看我们的应用Key复制AppID以及AppKey并在NexT主题的_config.yml文件中我们相应的位置填入即可，正确配置之后文件内容像这个样子:1234leancloud_visitors: enable: true app_id: dxDMdMpg9PkOb6M9tTxy7CNS-gzGzoHsz app_key: MExhCaDhpuIdy9kLiTVLFoz3 这个时候重新生成部署Hexo博客，应该就可以正常使用文章阅读量统计的功能了。需要特别说明的是：记录文章访问量的唯一标识符是文章的发布日期以及文章的标题，因此请确保这两个数值组合的唯一性，如果你更改了这两个数值，会造成文章阅读数值的清零重计。最后，一定要在Leancloud -&gt; 设置 -&gt; 安全中心 -&gt; Web 安全域名 把你的域名加进去，防止你的LeanCloud应用被恶意利用。 添加评论展示：使用ValineValine的简介是: 一款快速、简洁且高效的无后端评论系统。 你也可以使用 多说 畅言 网易云跟帖 来比力 hypercomments Gitment disqus 这里我简单总结一下上面这些第三方评论服务的优缺点：多说，网易云跟帖已经先后在2017年3月，7月停止服务。搜狐畅言需要备案，disqus被墙，gitment仅支持github用户。来比力是韩国的，国内有时会不稳定。hypercomments在官网体验时感觉不错，但是貌似收费，没仔细研究，也可能是我没发现免费入口。valine的界面和Next主题很搭，国内访问速度很快，唯一的缺点就是评论不能添加图片 valine 也是基于LeanCloud的免费云服务进行的开发。跟上面的添加阅读量统计很类似，如果你已经接入过LeanCloud的阅读量统计，那么接下来就很简单了 让我们三步完成评论服务的接入：创建Comment Class：让我们回到LeanCloud在我们刚才建的test应用中新建一个名叫 Comment 的Class，注意，这个Class也不要自定名称，只能使用Comment修改NexT主题的_config.yml文件：12345678910valine: enable: true appid: dxDMdMpg9PkOb6M9tTxy7CNS-gzGzoHsz appkey: MExhCaDhpuIdy9kLiTVLFoz3 notify: false # 邮件通知 verify: false # Verification code placeholder: just go go #输入框提示语 avatar: wavatar # 头像风格 guest_info: nick,mail # 昵称，邮箱 pageSize: 10 # 每页展示条数 接入Valine评论完成效果如下： 如果还有什么不懂的，可以去看看Valine官方文档 添加站内搜索：使用LocalSearch安装hexo-generator-searchdb plugin进入到你的站点根目录，在此处开始安装1$ npm install hexo-generator-searchdb --save 修改站点配置文件_config.yml在站点配置文件任意位置添加以下配置：12345search: path: search.xml field: post format: html limit: 10000 修改主题配置文件_config.yml找到主题配置文件的local_search项，将其更改为：1234567local_search: enable: true # if auto, trigger search by changing input # if manual, trigger search by pressing enter key or search button trigger: auto # show top n results per article, show all results by setting to -1 top_n_per_article: 1 大功告成，效果如下：]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[云南移动app加密]]></title>
+    <url>%2F%E4%BA%91%E5%8D%97%E7%A7%BB%E5%8A%A8app%E5%8A%A0%E5%AF%86%2F</url>
+    <content type="text"><![CDATA[登录需要用到的加密字段 Fields encrypt mode password des cbc jsonParam Base64 md5sign Md5 密码加密123password = EncryptGZipUtils.encode(EncryptGZipUtils.desEncode(secret, password.getBytes("UTF-8"))); jsonParam加密123456String data = "[&#123;\"dynamicURI\":\"/login\",\"dynamicParameter\":&#123;\"method\":\"ln\",\"m\":\""+ mobile +"\",\"p\":\""+ password + "\",\"deviceCode\":\"\"&#125;,\"dynamicDataNodeName\":\"pwdLogin_node\"&#125;]";String jsonParam = Base64.encode(data.getBytes("GBK")); 请求体中的md5sign123final String MD5_KEY = "11100android!@#";String Md5Sign = Md5Util.toMd5(MD5_KEY + deviceId + jsonParam); 登录密码加密util1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283package com.zhangzb.utils;import com.alibaba.fastjson.JSON;import com.alibaba.fastjson.JSONObject;import javax.crypto.Cipher;import javax.crypto.spec.IvParameterSpec;import javax.crypto.spec.SecretKeySpec;import java.io.UnsupportedEncodingException;/** * Created by zhangzb on 17-8-2. */public class EncryptGZipUtils &#123; public static final int ACTION_MASK = 255; private static final char[] legalChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".toCharArray(); private static byte[] iv = new byte[]&#123;(byte) 1, (byte) 2, (byte) 3, (byte) 4, (byte) 5, (byte) 6, (byte) 7, (byte) 8&#125;; public static String encode(byte[] data) &#123; int len = data.length; StringBuffer buf = new StringBuffer((data.length * 3) / 2); int end = len - 3; int i = 0; int n = 0; int d; while (i &lt;= end) &#123; d = (((data[i] &amp; ACTION_MASK) &lt;&lt; 16) | ((data[i + 1] &amp; ACTION_MASK) &lt;&lt; 8)) | (data[i + 2] &amp; ACTION_MASK); buf.append(legalChars[(d &gt;&gt; 18) &amp; 63]); buf.append(legalChars[(d &gt;&gt; 12) &amp; 63]); buf.append(legalChars[(d &gt;&gt; 6) &amp; 63]); buf.append(legalChars[d &amp; 63]); i += 3; int n2 = n + 1; if (n &gt;= 14) &#123; n2 = 0; buf.append(" "); &#125; n = n2; &#125; if (i == (0 + len) - 2) &#123; d = ((data[i] &amp; ACTION_MASK) &lt;&lt; 16) | ((data[i + 1] &amp; ACTION_MASK) &lt;&lt; 8); buf.append(legalChars[(d &gt;&gt; 18) &amp; 63]); buf.append(legalChars[(d &gt;&gt; 12) &amp; 63]); buf.append(legalChars[(d &gt;&gt; 6) &amp; 63]); buf.append("="); &#125; else if (i == (0 + len) - 1) &#123; d = (data[i] &amp; ACTION_MASK) &lt;&lt; 16; buf.append(legalChars[(d &gt;&gt; 18) &amp; 63]); buf.append(legalChars[(d &gt;&gt; 12) &amp; 63]); buf.append("=="); &#125; return buf.toString(); &#125; public static byte[] desEncode(String secret, byte[] byteS) &#123; try &#123; IvParameterSpec zeroIv = new IvParameterSpec(iv); SecretKeySpec key = new SecretKeySpec(secret.getBytes(), "DES"); Cipher cipher = Cipher.getInstance("DES/CBC/PKCS5Padding"); cipher.init(1, key, zeroIv); return cipher.doFinal(byteS); &#125; catch (Exception e) &#123; e.printStackTrace(); return null; &#125; &#125; public static void main(String[] args) &#123; String pwd = "82**88"; String secret = "!@#j*&amp;!k"; try &#123; String secretPwd = encode(EncryptGZipUtils.desEncode(secret, pwd.getBytes("UTF-8"))); System.out.println(secretPwd); &#125; catch (UnsupportedEncodingException e) &#123; e.printStackTrace(); &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>encrypt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[java发送邮件工具类]]></title>
+    <url>%2Fjava%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E5%B7%A5%E5%85%B7%E7%B1%BB%2F</url>
+    <content type="text"><![CDATA[12345678910111213141516171819202122232425262728293031323334353637383940414243package com.zhangzob.util;import lombok.Data;import lombok.extern.slf4j.Slf4j;import org.simplejavamail.email.Email;import org.simplejavamail.mailer.Mailer;import javax.mail.Message;import java.util.List;import java.util.Map;/** * Created by zhangzb on 17-2-10. */@Slf4j@Datapublic class SendEmailUtil &#123; /** * @param map 要发送的消息 * @param toUser 收件人邮箱 */ public static void sendEmail(Map&lt;String, List&lt;String&gt;&gt; map, String toUser)&#123; StringBuilder stringBuilder = new StringBuilder(); for(String value : map.keySet())&#123; stringBuilder.append(value); stringBuilder.append(":"); stringBuilder.append(map.get(value).toString()); stringBuilder.append("\n"); &#125; Email email = new Email(); email.setFromAddress("apiTest", "huangwdyx@163.com"); email.addRecipient("", toUser, Message.RecipientType.TO); email.setSubject("测试结果"); email.setText(stringBuilder.toString()); new Mailer("smtp.163.com", 25, "yourmail@163.com", "yourPassword").sendMail(email); log.info("发送成功！"); &#125;&#125;]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>mail</tag>
+      </tags>
+  </entry>
+</search>
