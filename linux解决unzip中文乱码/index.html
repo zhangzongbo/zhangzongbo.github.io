@@ -95,13 +95,13 @@
 <meta property="og:site_name" content="ZHANGZB&#39;S BLOG">
 <meta property="og:description" content="使用linux的unzip命令解压zip包时，时常遇到中文乱码的问题，这个问题由来已久，从来也没有修复过。推荐使用unar替代unzip，完美解决中文乱码的问题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/b20a1329ly1frr2hfk39fj20mi0dcaaf.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/b20a1329ly1frr2mm8tnkj20ed0aljrh.jpg">
-<meta property="og:updated_time" content="2018-05-28T10:33:55.782Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/b20a1329ly1frr2hfk39fj20mi0dcaaf.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/b20a1329ly1frr2mm8tnkj20ed0aljrh.jpg">
+<meta property="og:updated_time" content="2018-05-29T02:15:46.168Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux解决unzip中文乱码">
 <meta name="twitter:description" content="使用linux的unzip命令解压zip包时，时常遇到中文乱码的问题，这个问题由来已久，从来也没有修复过。推荐使用unar替代unzip，完美解决中文乱码的问题。">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/b20a1329ly1frr2hfk39fj20mi0dcaaf.jpg">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/b20a1329ly1frr2hfk39fj20mi0dcaaf.jpg">
 
 
 
@@ -423,7 +423,7 @@
 
       
         <p><strong> linux解压神器：<code>unar</code> </strong><br>用过linux的同学可能多多少少接触过linux下文档的压缩归档，通常来说我们最喜欢的还是用<code>tar</code>命令进行文件的归档。可有些时候，我们也不得不面对windows下常用压缩格式<code>.zip</code>文档。这时候同学们最先想到的肯定就是linux自带的<code>unzip</code>，使用命令<code>unzip files.zip</code>解压<code>.zip</code>文档一气呵成，合情合理。<code>unzip</code>命令在大多数情况下也不会让我们失望。解压过程优雅迅捷。可是随着我们继续使用<code>unzip</code>，我们会发现一个<code>unzip</code>致命的缺陷：当<code>.zip</code>包中有中文命名的文件时，解压出来的文件名会乱码。效果如图：</p>
-<p><img src="http://ww1.sinaimg.cn/large/b20a1329ly1frr2hfk39fj20mi0dcaaf.jpg" alt="image"></p>
+<p><img src="https://ws1.sinaimg.cn/large/b20a1329ly1frr2hfk39fj20mi0dcaaf.jpg" alt="image"></p>
 <p>网上有人给出了原因：</p>
 <blockquote>
 <p>原因是unzip试图将zip文件中用 oem(ibm-dos) codepage 编码的文件名转换成自己的内部编码。可惜unzip只能转换极少数几种codepage，中文的 cp936 不在其列。  </p>
@@ -435,7 +435,7 @@
 <li>解压时指定参数：类似与这样<code>unzip -O CP936 xxx.zip (GBK, GB18030也可以)</code>。</li>
 </ul>
 <p>以上方法有些过于复杂，有些实测没有效果。这里不予推荐。<br>这里推荐的是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install unar</span><br><span class="line">unar xxx.zip</span><br></pre></td></tr></table></figure></p>
-<p>使用<code>unar</code>后，解压中文就不会出现乱码啦，效果如图：<br><img src="http://ww1.sinaimg.cn/large/b20a1329ly1frr2mm8tnkj20ed0aljrh.jpg" alt="image"></p>
+<p>使用<code>unar</code>后，解压中文就不会出现乱码啦，效果如图：<br><img src="https://ws1.sinaimg.cn/large/b20a1329ly1frr2mm8tnkj20ed0aljrh.jpg" alt="image"></p>
 
       
     </div>
@@ -605,7 +605,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -616,7 +616,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

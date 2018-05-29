@@ -96,17 +96,17 @@
 <meta property="og:site_name" content="ZHANGZB&#39;S BLOG">
 <meta property="og:description" content="为你的hexo博客接入阅读量，评论和搜索服务">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/b20a1329ly1frr2oo1huzj20fo0cg0t0.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/b20a1329ly1frr2oo1huzj20fo0cg0t0.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/b20a1329ly1frr2pg4s8lj20lo0bkjsl.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/b20a1329ly1frr2pqyfxrj20vm0eiq4q.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/b20a1329ly1frr60cff95j20xr0ff0va.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/b20a1329ly1frr6kqp1j1j20pq0ewq3a.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/b20a1329ly1frr7je236lj20rv0jywfz.jpg">
-<meta property="og:updated_time" content="2018-05-28T10:07:07.214Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/b20a1329ly1frr2pqyfxrj20vm0eiq4q.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/b20a1329ly1frr60cff95j20xr0ff0va.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/b20a1329ly1frrznwnpq5j20pq0ewq3a.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/b20a1329ly1frrzmd7an1j20rv0jywfz.jpg">
+<meta property="og:updated_time" content="2018-05-29T02:14:54.784Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo-next接入评论和搜索服务">
 <meta name="twitter:description" content="为你的hexo博客接入阅读量，评论和搜索服务">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/b20a1329ly1frr2oo1huzj20fo0cg0t0.jpg">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/b20a1329ly1frr2oo1huzj20fo0cg0t0.jpg">
 
 
 
@@ -429,9 +429,9 @@
       
         <h3 id="添加阅读量展示：使用LeanCloud"><a href="#添加阅读量展示：使用LeanCloud" class="headerlink" title="添加阅读量展示：使用LeanCloud"></a>添加阅读量展示：使用<a href="https://leancloud.cn/" title="去注册" target="_blank" rel="noopener">LeanCloud</a></h3><p><strong> hexo-next 6.0 集成了<code>leancloud_visitors</code> <code>firestore</code> <code>busuanzi_count</code> 三种统计插件，这里我们选择leanCloud</strong><br>在完成注册LeanCloud帐号并验证邮箱之后，登录我们的LeanCloud帐号，进行简单的配置之后拿到<code>AppID</code>以及<code>AppKey</code>这两个参数就可以可正常使用文章阅读量统计的功能了。</p>
 <h4 id="注册LeanCloud："><a href="#注册LeanCloud：" class="headerlink" title="注册LeanCloud："></a>注册LeanCloud：</h4><p>完成了注册和激活邮箱，接下来我们需要进入控制台创建一个应用</p>
-<h4 id="创建应用"><a href="#创建应用" class="headerlink" title="创建应用"></a>创建应用</h4><p><img src="http://ww1.sinaimg.cn/large/b20a1329ly1frr2oo1huzj20fo0cg0t0.jpg" alt=""><br>这里我已经创建过一个<code>test</code>应用（你可以随意起名），直接点进去</p>
+<h4 id="创建应用"><a href="#创建应用" class="headerlink" title="创建应用"></a>创建应用</h4><p><img src="https://ws1.sinaimg.cn/large/b20a1329ly1frr2oo1huzj20fo0cg0t0.jpg" alt=""><br>这里我已经创建过一个<code>test</code>应用（你可以随意起名），直接点进去</p>
 <h4 id="建立class"><a href="#建立class" class="headerlink" title="建立class:"></a>建立class:</h4><p>点击控制台的存储标签，我们需要一个名为Counter的class，注意这里不要自定class的名字，必须为<code>Counter</code><br><img src="http://ww1.sinaimg.cn/large/b20a1329ly1frr2pg4s8lj20lo0bkjsl.jpg" alt=""></p>
-<h4 id="绑定AppID和AppKey"><a href="#绑定AppID和AppKey" class="headerlink" title="绑定AppID和AppKey:"></a>绑定AppID和AppKey:</h4><p>打开控制台的设置标签栏，应用Key查看我们的应用Key<br><img src="http://ww1.sinaimg.cn/large/b20a1329ly1frr2pqyfxrj20vm0eiq4q.jpg" alt=""><br>复制AppID以及AppKey并在NexT主题的<code>_config.yml</code>文件中我们相应的位置填入即可，正确配置之后文件内容像这个样子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">leancloud_visitors:</span><br><span class="line">  enable: true</span><br><span class="line">  app_id: dxDMdMpg9PkOb6M9tTxy7CNS-gzGzoHsz</span><br><span class="line">  app_key: MExhCaDhpuIdy9kLiTVLFoz3</span><br></pre></td></tr></table></figure></p>
+<h4 id="绑定AppID和AppKey"><a href="#绑定AppID和AppKey" class="headerlink" title="绑定AppID和AppKey:"></a>绑定AppID和AppKey:</h4><p>打开控制台的设置标签栏，应用Key查看我们的应用Key<br><img src="https://ws1.sinaimg.cn/large/b20a1329ly1frr2pqyfxrj20vm0eiq4q.jpg" alt=""><br>复制AppID以及AppKey并在NexT主题的<code>_config.yml</code>文件中我们相应的位置填入即可，正确配置之后文件内容像这个样子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">leancloud_visitors:</span><br><span class="line">  enable: true</span><br><span class="line">  app_id: dxDMdMpg9PkOb6M9tTxy7CNS-gzGzoHsz</span><br><span class="line">  app_key: MExhCaDhpuIdy9kLiTVLFoz3</span><br></pre></td></tr></table></figure></p>
 <p>这个时候重新生成部署Hexo博客，应该就可以正常使用文章阅读量统计的功能了。需要特别说明的是：记录文章访问量的唯一标识符是文章的发布日期以及文章的标题，因此请确保这两个数值组合的唯一性，如果你更改了这两个数值，会造成文章阅读数值的清零重计。<br>最后，一定要在Leancloud -&gt; 设置 -&gt; 安全中心 -&gt; Web 安全域名 把你的域名加进去，防止你的LeanCloud应用被恶意利用。</p>
 <h3 id="添加评论展示：使用Valine"><a href="#添加评论展示：使用Valine" class="headerlink" title="添加评论展示：使用Valine"></a>添加评论展示：使用<a href="https://valine.js.org/quickstart/" title="跳转" target="_blank" rel="noopener">Valine</a></h3><p>Valine的简介是:</p>
 <blockquote>
@@ -445,15 +445,15 @@
 <li>来比力</li>
 <li>hypercomments</li>
 <li>Gitment</li>
-<li>disqus<br><strong> 这里我简单总结一下上面这些第三方评论服务的优缺点：多说，网易云跟帖已经先后在2017年3月，7月停止服务。搜狐畅言需要备案，disqus被墙，gitment仅支持github用户。来比力是韩国的，国内有时会不稳定。hypercomments在官网体验时感觉不错，但是貌似收费，没仔细研究，也可能是我没发现免费入口。valine的界面和Next主题很搭，国内访问速度很快，唯一的缺点就是评论不能添加图片 </strong><br><strong> valine 也是基于LeanCloud的免费云服务进行的开发。跟上面的添加阅读量统计很类似，如果你已经接入过LeanCloud的阅读量统计，那么接下来就很简单了 </strong><br>让我们三步完成评论服务的接入：<h4 id="创建Comment-Class："><a href="#创建Comment-Class：" class="headerlink" title="创建Comment Class："></a>创建Comment Class：</h4>让我们回到LeanCloud在我们刚才建的<code>test</code>应用中新建一个名叫 <code>Comment</code> 的Class，注意，这个Class也不要自定名称，只能使用<code>Comment</code><br><img src="http://ww1.sinaimg.cn/large/b20a1329ly1frr60cff95j20xr0ff0va.jpg" alt=""><h4 id="修改NexT主题的-config-yml文件："><a href="#修改NexT主题的-config-yml文件：" class="headerlink" title="修改NexT主题的_config.yml文件："></a>修改NexT主题的<code>_config.yml</code>文件：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">valine:</span><br><span class="line">  enable: true</span><br><span class="line">  appid:  dxDMdMpg9PkOb6M9tTxy7CNS-gzGzoHsz</span><br><span class="line">  appkey:  MExhCaDhpuIdy9kLiTVLFoz3</span><br><span class="line">  notify: false # 邮件通知</span><br><span class="line">  verify: false # Verification code</span><br><span class="line">  placeholder: just go go #输入框提示语</span><br><span class="line">  avatar: wavatar # 头像风格</span><br><span class="line">  guest_info: nick,mail # 昵称，邮箱</span><br><span class="line">  pageSize: 10 # 每页展示条数</span><br></pre></td></tr></table></figure>
+<li>disqus<br><strong> 这里我简单总结一下上面这些第三方评论服务的优缺点：多说，网易云跟帖已经先后在2017年3月，7月停止服务。搜狐畅言需要备案，disqus被墙，gitment仅支持github用户。来比力是韩国的，国内有时会不稳定。hypercomments在官网体验时感觉不错，但是貌似收费，没仔细研究，也可能是我没发现免费入口。valine的界面和Next主题很搭，国内访问速度很快，唯一的缺点就是评论不能添加图片 </strong><br><strong> valine 也是基于LeanCloud的免费云服务进行的开发。跟上面的添加阅读量统计很类似，如果你已经接入过LeanCloud的阅读量统计，那么接下来就很简单了 </strong><br>让我们三步完成评论服务的接入：<h4 id="创建Comment-Class："><a href="#创建Comment-Class：" class="headerlink" title="创建Comment Class："></a>创建Comment Class：</h4>让我们回到LeanCloud在我们刚才建的<code>test</code>应用中新建一个名叫 <code>Comment</code> 的Class，注意，这个Class也不要自定名称，只能使用<code>Comment</code><br><img src="https://ws1.sinaimg.cn/large/b20a1329ly1frr60cff95j20xr0ff0va.jpg" alt=""><h4 id="修改NexT主题的-config-yml文件："><a href="#修改NexT主题的-config-yml文件：" class="headerlink" title="修改NexT主题的_config.yml文件："></a>修改NexT主题的<code>_config.yml</code>文件：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">valine:</span><br><span class="line">  enable: true</span><br><span class="line">  appid:  dxDMdMpg9PkOb6M9tTxy7CNS-gzGzoHsz</span><br><span class="line">  appkey:  MExhCaDhpuIdy9kLiTVLFoz3</span><br><span class="line">  notify: false # 邮件通知</span><br><span class="line">  verify: false # Verification code</span><br><span class="line">  placeholder: just go go #输入框提示语</span><br><span class="line">  avatar: wavatar # 头像风格</span><br><span class="line">  guest_info: nick,mail # 昵称，邮箱</span><br><span class="line">  pageSize: 10 # 每页展示条数</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h4 id="接入Valine评论完成"><a href="#接入Valine评论完成" class="headerlink" title="接入Valine评论完成"></a>接入Valine评论完成</h4><p>效果如下：<br><img src="http://ww1.sinaimg.cn/large/b20a1329ly1frr6kqp1j1j20pq0ewq3a.jpg" alt=""></p>
+<h4 id="接入Valine评论完成"><a href="#接入Valine评论完成" class="headerlink" title="接入Valine评论完成"></a>接入Valine评论完成</h4><p>效果如下：<br><img src="https://ws1.sinaimg.cn/large/b20a1329ly1frrznwnpq5j20pq0ewq3a.jpg" alt=""></p>
 <p>如果还有什么不懂的，可以去看看<a href="https://valine.js.org/quickstart/" title="Valine快速开始" target="_blank" rel="noopener">Valine官方文档</a></p>
 <h3 id="添加站内搜索：使用LocalSearch"><a href="#添加站内搜索：使用LocalSearch" class="headerlink" title="添加站内搜索：使用LocalSearch"></a>添加站内搜索：使用LocalSearch</h3><h4 id="安装hexo-generator-searchdb-plugin"><a href="#安装hexo-generator-searchdb-plugin" class="headerlink" title="安装hexo-generator-searchdb plugin"></a>安装hexo-generator-searchdb plugin</h4><p>进入到你的站点根目录，在此处开始安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure></p>
 <h4 id="修改站点配置文件-config-yml"><a href="#修改站点配置文件-config-yml" class="headerlink" title="修改站点配置文件_config.yml"></a>修改站点配置文件<code>_config.yml</code></h4><p>在站点配置文件任意位置添加以下配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure></p>
 <h4 id="修改主题配置文件-config-yml"><a href="#修改主题配置文件-config-yml" class="headerlink" title="修改主题配置文件_config.yml"></a>修改主题配置文件<code>_config.yml</code></h4><p>找到主题配置文件的local_search项，将其更改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line">  # if auto, trigger search by changing input</span><br><span class="line">  # if manual, trigger search by pressing enter key or search button</span><br><span class="line">  trigger: auto</span><br><span class="line">  # show top n results per article, show all results by setting to -1</span><br><span class="line">  top_n_per_article: 1</span><br></pre></td></tr></table></figure></p>
-<p>大功告成，效果如下：<br><img src="http://ww1.sinaimg.cn/large/b20a1329ly1frr7je236lj20rv0jywfz.jpg" alt=""></p>
+<p>大功告成，效果如下：<br><img src="https://ws1.sinaimg.cn/large/b20a1329ly1frrzmd7an1j20rv0jywfz.jpg" alt=""></p>
 
       
     </div>
@@ -638,7 +638,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -649,7 +649,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
