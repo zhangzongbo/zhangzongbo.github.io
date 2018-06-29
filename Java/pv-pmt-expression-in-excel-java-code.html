@@ -101,7 +101,7 @@
 <meta property="og:description" content="office支持文档中介绍：PV 是一个财务函数，用于根据固定利率计算贷款或投资的现值。 可以将 PV 与定期付款、固定付款（如按揭或其他贷款）或投资目标的未来值结合使用。PV公式是银行、保险、信贷行业常用的财务函数，我们可以在Excel中方便的使用该函数计算现值．这是一套用java实现的PV计算函数。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/b20a1329ly1fspzm1hznej209202vq5e.jpg">
-<meta property="og:updated_time" content="2018-06-28T08:22:46.035Z">
+<meta property="og:updated_time" content="2018-06-29T07:49:09.058Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Excel中财务函数PV,PMT公式的java实现">
 <meta name="twitter:description" content="office支持文档中介绍：PV 是一个财务函数，用于根据固定利率计算贷款或投资的现值。 可以将 PV 与定期付款、固定付款（如按揭或其他贷款）或投资目标的未来值结合使用。PV公式是银行、保险、信贷行业常用的财务函数，我们可以在Excel中方便的使用该函数计算现值．这是一套用java实现的PV计算函数。">
@@ -115,7 +115,7 @@
     root: '/',
     scheme: 'Mist',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -356,7 +356,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-29T15:49:09+08:00">
+                2018-06-29
+              </time>
             
           </span>
 
@@ -438,8 +450,8 @@
         <blockquote>
 <p>PV 是一个财务函数，用于根据固定利率计算贷款或投资的现值。 可以将 PV 与定期付款、固定付款（如按揭或其他贷款）或投资目标的未来值结合使用。</p>
 </blockquote>
-<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>PV(rate, nper, pmt, [fv], [type])</p>
-<p>PV 函数语法具有下列参数：</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>PV(rate, nper, pmt, [fv], [type])</p>
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p>PV 函数语法具有下列参数：</p>
 <ul>
 <li><p>Rate    必需。 各期利率。 例如，如果您获得年利率为 10% 的汽车贷款，并且每月还款一次，则每月的利率为 10%/12（即 0.83%）。 您需要在公式中输入 10%/12（即 0.83%）或 0.0083 作为利率。</p>
 </li>
@@ -452,12 +464,12 @@
 <li><p>类型    可选。 数字 0 或 1，用以指定各期的付款时间是在期初还是期末。</p>
 </li>
 </ul>
-<p>Microsoft Excel 根据其他参数来求解某个金融参数。 如果 rate 不为 0，则：</p>
-<p>公式</p>
+<h3 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h3><p>Microsoft Excel 根据其他参数来求解某个金融参数。 如果 rate 不为 0，则：</p>
 <p><img src="https://ws1.sinaimg.cn/large/b20a1329ly1fspzm1hznej209202vq5e.jpg" alt=""></p>
 <p>如果 rate 为 0，则：</p>
 <p>(pmt * nper) + pv + fv = 0</p>
-<h3 id="以上是Office-的-support-文档对PV计算的部分介绍详细可以看看Office文档"><a href="#以上是Office-的-support-文档对PV计算的部分介绍详细可以看看Office文档" class="headerlink" title="以上是Office 的 support 文档对PV计算的部分介绍详细可以看看Office文档"></a>以上是Office 的 support 文档对PV计算的部分介绍详细可以看看<a href="https://support.office.com/en-us/article/pv-function-23879d31-0e02-4321-be01-da16e8168cbd?omkt=en-US&amp;ui=en-US&amp;rs=en-US&amp;ad=US" title="跳转" target="_blank" rel="noopener">Office文档</a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.insurance.common.utill;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by zhangzb on 2018/06/26.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PMTUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">pmtRoundDown</span><span class="params">(<span class="keyword">double</span> monthRate,<span class="keyword">int</span> periods,<span class="keyword">double</span> amount)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">double</span> var = Math.pow(<span class="number">1</span> + monthRate,periods);</span><br><span class="line">        <span class="keyword">double</span> pmtAmount = amount * (monthRate * var) / (var - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BigDecimal(pmtAmount).setScale(<span class="number">2</span>, BigDecimal.ROUND_DOWN).doubleValue();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">pmt</span><span class="params">(<span class="keyword">double</span> monthRate,<span class="keyword">int</span> periods,<span class="keyword">double</span> amount,<span class="keyword">int</span> percise)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">double</span> var = Math.pow(<span class="number">1</span> + monthRate,periods);</span><br><span class="line">        <span class="keyword">double</span> pmtAmount = amount * (monthRate * var) / (var - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BigDecimal(pmtAmount).setScale(percise, BigDecimal.ROUND_HALF_UP).doubleValue();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//参考 https://support.office.com/zh-CN/article/PV-%E5%87%BD%E6%95%B0-23879D31-0E02-4321-BE01-DA16E8168CBD</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">pv</span><span class="params">(<span class="keyword">double</span> monthRate,<span class="keyword">int</span> periods,<span class="keyword">double</span> peridsAmount)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 如果年化收益率为零，monthRate作分母会出现NaN错误，需要对月利率为零进行特殊处理</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">if</span> (monthRate == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> periods * peridsAmount;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">double</span> var = Math.pow(<span class="number">1</span> + monthRate,-periods);</span><br><span class="line">        <span class="keyword">double</span> pvAmount = (peridsAmount - peridsAmount * var) / monthRate;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BigDecimal(pvAmount).setScale(<span class="number">2</span>, BigDecimal.ROUND_HALF_UP).doubleValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(pmt(<span class="number">0.115</span>/<span class="number">12</span>,<span class="number">12</span>,<span class="number">10000</span>));</span><br><span class="line"></span><br><span class="line">        System.out.println(PMTUtil.pv(<span class="number">0.08</span> / <span class="number">12</span>,<span class="number">5</span>,<span class="number">662.12</span>));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h3><p> 以上是Office 的 support 文档对PV计算的部分介绍,详细可以看看<a href="https://support.office.com/en-us/article/pv-function-23879d31-0e02-4321-be01-da16e8168cbd?omkt=en-US&amp;ui=en-US&amp;rs=en-US&amp;ad=US" title="跳转" target="_blank" rel="noopener">Office文档</a></p>
+<h3 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.insurance.common.utill;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by zhangzb on 2018/06/26.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PMTUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">pmtRoundDown</span><span class="params">(<span class="keyword">double</span> monthRate,<span class="keyword">int</span> periods,<span class="keyword">double</span> amount)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">double</span> var = Math.pow(<span class="number">1</span> + monthRate,periods);</span><br><span class="line">        <span class="keyword">double</span> pmtAmount = amount * (monthRate * var) / (var - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BigDecimal(pmtAmount).setScale(<span class="number">2</span>, BigDecimal.ROUND_DOWN).doubleValue();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">pmt</span><span class="params">(<span class="keyword">double</span> monthRate,<span class="keyword">int</span> periods,<span class="keyword">double</span> amount,<span class="keyword">int</span> percise)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">double</span> var = Math.pow(<span class="number">1</span> + monthRate,periods);</span><br><span class="line">        <span class="keyword">double</span> pmtAmount = amount * (monthRate * var) / (var - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BigDecimal(pmtAmount).setScale(percise, BigDecimal.ROUND_HALF_UP).doubleValue();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//参考 https://support.office.com/zh-CN/article/PV-%E5%87%BD%E6%95%B0-23879D31-0E02-4321-BE01-DA16E8168CBD</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">pv</span><span class="params">(<span class="keyword">double</span> monthRate,<span class="keyword">int</span> periods,<span class="keyword">double</span> peridsAmount)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 如果年化收益率为零，monthRate作分母会出现NaN错误，需要对月利率为零进行特殊处理</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">if</span> (monthRate == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> periods * peridsAmount;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">double</span> var = Math.pow(<span class="number">1</span> + monthRate,-periods);</span><br><span class="line">        <span class="keyword">double</span> pvAmount = (peridsAmount - peridsAmount * var) / monthRate;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BigDecimal(pvAmount).setScale(<span class="number">2</span>, BigDecimal.ROUND_HALF_UP).doubleValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(pmt(<span class="number">0.115</span>/<span class="number">12</span>,<span class="number">12</span>,<span class="number">10000</span>));</span><br><span class="line"></span><br><span class="line">        System.out.println(PMTUtil.pv(<span class="number">0.08</span> / <span class="number">12</span>,<span class="number">5</span>,<span class="number">662.12</span>));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -506,12 +518,12 @@
     zongbo.zhang
   </li>
   <li class="post-copyright-link">
-    <strong>本文链接：</strong>
+    <strong>原始链接：</strong>
     <a href="https://zobgo.com/Java/pv-pmt-expression-in-excel-java-code.html" title="Excel中财务函数PV,PMT公式的java实现">https://zobgo.com/Java/pv-pmt-expression-in-excel-java-code.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    本站遵循<a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。
   </li>
 </ul>
 
@@ -522,13 +534,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/pv/" rel="tag"># pv</a>
+            <a href="/tags/pv/" rel="tag"><i class="fa fa-tag"></i> pv</a>
           
-            <a href="/tags/pmt/" rel="tag"># pmt</a>
+            <a href="/tags/pmt/" rel="tag"><i class="fa fa-tag"></i> pmt</a>
           
-            <a href="/tags/excel/" rel="tag"># excel</a>
+            <a href="/tags/excel/" rel="tag"><i class="fa fa-tag"></i> excel</a>
           
-            <a href="/tags/java/" rel="tag"># java</a>
+            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
           
         </div>
       
@@ -704,7 +716,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">1.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#以上是Office-的-support-文档对PV计算的部分介绍详细可以看看Office文档"><span class="nav-number">1.1.</span> <span class="nav-text">以上是Office 的 support 文档对PV计算的部分介绍详细可以看看Office文档</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数"><span class="nav-number">2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公式"><span class="nav-number">3.</span> <span class="nav-text">公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文档"><span class="nav-number">4.</span> <span class="nav-text">文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java代码"><span class="nav-number">5.</span> <span class="nav-text">java代码</span></a></li></ol></div>
             
 
           </div>
@@ -776,6 +788,8 @@
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
         
       </div>
     
