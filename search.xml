@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[这可能是最好用最稳定的图床了---使用新浪微博图床]]></title>
-    <url>%2FHexo%2Fuse-sina-weibo-image-host.html</url>
-    <content type="text"><![CDATA[当你开始在博客中插入图片的时候，你就不得不开始考虑这些问题： 我要怎么在markdown 中插入图片？ 静态网站如果图片存在服务器上，资源文件体积膨胀怎么解决？ 图片过大影响网页加载速度怎么办？ 当我开始解决这些问题时，我最先想到的是：]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>图床</tag>
-        <tag>sinaimg</tag>
-        <tag>markdown</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Excel中财务函数PV,PMT公式的java实现]]></title>
     <url>%2FJava%2Fpv-pmt-expression-in-excel-java-code.html</url>
     <content type="text"><![CDATA[PV 是一个财务函数，用于根据固定利率计算贷款或投资的现值。 可以将 PV 与定期付款、固定付款（如按揭或其他贷款）或投资目标的未来值结合使用。 语法PV(rate, nper, pmt, [fv], [type]) 参数PV 函数语法具有下列参数： Rate 必需。 各期利率。 例如，如果您获得年利率为 10% 的汽车贷款，并且每月还款一次，则每月的利率为 10%/12（即 0.83%）。 您需要在公式中输入 10%/12（即 0.83%）或 0.0083 作为利率。 Nper 必需。 年金的付款总期数。 例如，如果您获得为期四年的汽车贷款，每月还款一次，则贷款期数为 4*12（即 48）期。 您需要在公式中输入 48 作为 nper。 Pmt 必需。 每期的付款金额，在年金周期内不能更改。 通常，pmt 包括本金和利息，但不含其他费用或税金。 例如，对于金额为 ￥100,000、利率为 12% 的四年期汽车贷款，每月付款为 ￥2633.30。 您需要在公式中输入 -2633.30 作为 pmt。 如果省略 pmt，则必须包括 fv 参数。 fv 可选。 未来值，或在最后一次付款后希望得到的现金余额。 如果省略 fv，则假定其值为 0（例如，贷款的未来值是 0）。 例如，如果要在 18 年中为支付某个特殊项目而储蓄 ￥500,000，则 ￥500,000 就是未来值。 然后，您可以对利率进行保守的猜测，并确定每月必须储蓄的金额。 如果省略 fv，则必须包括 pmt 参数。 类型 可选。 数字 0 或 1，用以指定各期的付款时间是在期初还是期末。 公式Microsoft Excel 根据其他参数来求解某个金融参数。 如果 rate 不为 0，则： 如果 rate 为 0，则： (pmt * nper) + pv + fv = 0 文档 以上是Office 的 support 文档对PV计算的部分介绍,详细可以看看Office文档 java代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354package com.insurance.common.utill;import java.math.BigDecimal;/** * Created by zhangzb on 2018/06/26. */public class PMTUtil &#123; public static double pmtRoundDown(double monthRate,int periods,double amount)&#123; double var = Math.pow(1 + monthRate,periods); double pmtAmount = amount * (monthRate * var) / (var - 1); return new BigDecimal(pmtAmount).setScale(2, BigDecimal.ROUND_DOWN).doubleValue(); &#125; public static double pmt(double monthRate,int periods,double amount,int percise)&#123; double var = Math.pow(1 + monthRate,periods); double pmtAmount = amount * (monthRate * var) / (var - 1); return new BigDecimal(pmtAmount).setScale(percise, BigDecimal.ROUND_HALF_UP).doubleValue(); &#125; //参考 https://support.office.com/zh-CN/article/PV-%E5%87%BD%E6%95%B0-23879D31-0E02-4321-BE01-DA16E8168CBD public static double pv(double monthRate,int periods,double peridsAmount)&#123; /** * 如果年化收益率为零，monthRate作分母会出现NaN错误，需要对月利率为零进行特殊处理 */ if (monthRate == 0)&#123; return periods * peridsAmount; &#125; double var = Math.pow(1 + monthRate,-periods); double pvAmount = (peridsAmount - peridsAmount * var) / monthRate; return new BigDecimal(pvAmount).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue(); &#125; public static void main(String[]args)&#123; System.out.println(pmt(0.115/12,12,10000,2)); System.out.println(PMTUtil.pv(0.08 / 12,5,662.12)); &#125;&#125;]]></content>
