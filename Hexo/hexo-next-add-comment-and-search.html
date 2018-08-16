@@ -106,7 +106,7 @@
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/b20a1329ly1frr60cff95j20xr0ff0va.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/b20a1329ly1frrznwnpq5j20pq0ewq3a.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/b20a1329ly1frrzmd7an1j20rv0jywfz.jpg">
-<meta property="og:updated_time" content="2018-05-29T07:08:25.581Z">
+<meta property="og:updated_time" content="2018-08-07T09:37:26.820Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo-next接入评论和搜索服务">
 <meta name="twitter:description" content="为你的hexo博客接入阅读量，评论和搜索服务">
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-29T15:08:25+08:00">
-                2018-05-29
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-07T17:37:26+08:00">
+                2018-08-07
               </time>
             
           </span>
@@ -470,7 +470,7 @@
 <li>来比力</li>
 <li>hypercomments</li>
 <li>Gitment</li>
-<li>disqus<br><strong> 这里我简单总结一下上面这些第三方评论服务的优缺点：多说，网易云跟帖已经先后在2017年3月，7月停止服务。搜狐畅言需要备案，disqus被墙，gitment仅支持github用户。来比力是韩国的，国内有时会不稳定。hypercomments在官网体验时感觉不错，但是貌似收费，没仔细研究，也可能是我没发现免费入口。valine的界面和Next主题很搭，国内访问速度很快，唯一的缺点就是评论不能添加图片 </strong><br><strong> valine 也是基于LeanCloud的免费云服务进行的开发。跟上面的添加阅读量统计很类似，如果你已经接入过LeanCloud的阅读量统计，那么接下来就很简单了 </strong><br>让我们三步完成评论服务的接入：<h4 id="创建Comment-Class："><a href="#创建Comment-Class：" class="headerlink" title="创建Comment Class："></a>创建Comment Class：</h4>让我们回到LeanCloud在我们刚才建的<code>test</code>应用中新建一个名叫 <code>Comment</code> 的Class，注意，这个Class也不要自定名称，只能使用<code>Comment</code><br><img src="https://ws1.sinaimg.cn/large/b20a1329ly1frr60cff95j20xr0ff0va.jpg" alt="新建Comment class"><h4 id="修改NexT主题的-config-yml文件："><a href="#修改NexT主题的-config-yml文件：" class="headerlink" title="修改NexT主题的_config.yml文件："></a>修改NexT主题的<code>_config.yml</code>文件：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">valine:</span><br><span class="line">  enable: true</span><br><span class="line">  appid:  dxDMdMpg9PkOb6M9tTxy7CNS-gzGzoHsz</span><br><span class="line">  appkey:  MExhCaDhpuIdy9kLiTVLFoz3</span><br><span class="line">  notify: false # 邮件通知</span><br><span class="line">  verify: false # Verification code</span><br><span class="line">  placeholder: just go go #输入框提示语</span><br><span class="line">  avatar: wavatar # 头像风格</span><br><span class="line">  guest_info: nick,mail # 昵称，邮箱</span><br><span class="line">  pageSize: 10 # 每页展示条数</span><br></pre></td></tr></table></figure>
+<li>disqus<br><strong> 这里我简单总结一下上面这些第三方评论服务的优缺点：多说，网易云跟帖已经先后在2017年3月，7月停止服务。搜狐畅言需要备案，disqus被墙，gitment仅支持github用户。来比力是韩国的，国内有时会不稳定。hypercomments在官网体验时感觉不错，但是貌似收费，没仔细研究，也可能是我没发现免费入口。valine的界面和Next主题很搭，国内访问速度很快，<del>唯一的缺点就是评论不能添加图片</del>(经评论提醒，是可以评论图片的) </strong><br><strong> valine 也是基于LeanCloud的免费云服务进行的开发。跟上面的添加阅读量统计很类似，如果你已经接入过LeanCloud的阅读量统计，那么接下来就很简单了 </strong><br>让我们三步完成评论服务的接入：<h4 id="创建Comment-Class："><a href="#创建Comment-Class：" class="headerlink" title="创建Comment Class："></a>创建Comment Class：</h4>让我们回到LeanCloud在我们刚才建的<code>test</code>应用中新建一个名叫 <code>Comment</code> 的Class，注意，这个Class也不要自定名称，只能使用<code>Comment</code><br><img src="https://ws1.sinaimg.cn/large/b20a1329ly1frr60cff95j20xr0ff0va.jpg" alt="新建Comment class"><h4 id="修改NexT主题的-config-yml文件："><a href="#修改NexT主题的-config-yml文件：" class="headerlink" title="修改NexT主题的_config.yml文件："></a>修改NexT主题的<code>_config.yml</code>文件：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">valine:</span><br><span class="line">  enable: true</span><br><span class="line">  appid:  dxDMdMpg9PkOb6M9tTxy7CNS-gzGzoHsz</span><br><span class="line">  appkey:  MExhCaDhpuIdy9kLiTVLFoz3</span><br><span class="line">  notify: false # 邮件通知</span><br><span class="line">  verify: false # Verification code</span><br><span class="line">  placeholder: just go go #输入框提示语</span><br><span class="line">  avatar: wavatar # 头像风格</span><br><span class="line">  guest_info: nick,mail # 昵称，邮箱</span><br><span class="line">  pageSize: 10 # 每页展示条数</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h4 id="接入Valine评论完成"><a href="#接入Valine评论完成" class="headerlink" title="接入Valine评论完成"></a>接入Valine评论完成</h4><p>效果如下：<br><img src="https://ws1.sinaimg.cn/large/b20a1329ly1frrznwnpq5j20pq0ewq3a.jpg" alt=""></p>
@@ -660,7 +660,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -929,9 +929,11 @@
 
 
 
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
+<!--   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
+<!--   <script src="//unpkg.com/valine/dist/Valine.min.js"></script> -->
+  <script type="text/javascript" src="/js/src/Valine.min.js"></script>
+  <script type="text/javascript" src="/js/src/av-min.js"></script>
+
   <script type="text/javascript">
     var GUEST = ['nick','mail','link'];
     var guest = 'nick,mail';
@@ -1279,7 +1281,8 @@
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <!--  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script> -->
+  <script type="text/javascript" src="/js/src/av-core-mini-0.6.4.js"></script>
   <script>AV.initialize("dxDMdMpg9PkOb6M9tTxy7CNS-gzGzoHsz", "MExhCaDhpuIdy9kLiTVLFoz3");</script>
   <script>
     function showTime(Counter) {
