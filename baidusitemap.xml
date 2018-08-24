@@ -4,6 +4,32 @@
 
     
   <url>
+    <loc>https://zobgo.com/Java/elastic-job-with-spring-boot-demo.html</loc>
+    <lastmod>2018-08-24T10:31:08.429Z</lastmod>
+    <data>
+        <display>
+        <title>Elastic Job整合Spring Boot简单实践Demo</title>
+        <pubTime>2018-08-24T08:28:28.000Z</pubTime>
+        
+        <tag>Elastic Job</tag>
+         
+        <tag>Zookeeper</tag>
+         
+        <tag>定时任务</tag>
+         
+        <tag>Spring Boot</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="https://zobgo.com/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://zobgo.com/Java/java-send-mail-util.html</loc>
     <lastmod>2018-08-16T06:43:30.130Z</lastmod>
     <data>
