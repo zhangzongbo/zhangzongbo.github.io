@@ -102,10 +102,11 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2243690-9cd9c896e0d512ed.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/643/format/webp">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/11/165c62ed260e1731?imageslim">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1170065/201806/1170065-20180623154603452-99143360.png">
 <meta property="og:image" content="https://image-static.segmentfault.com/427/046/4270467106-5a519b5c0dec0_articlex">
 <meta property="og:image" content="https://image-static.segmentfault.com/905/020/905020101-5a5194c96a610_articlex">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/b20a1329ly1fww64vx2xnj21aa0o54qs.jpg">
-<meta property="og:updated_time" content="2018-11-04T09:48:06.276Z">
+<meta property="og:updated_time" content="2018-11-05T10:15:59.508Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试准备笔记整理">
 <meta name="twitter:description" content="java面试需要准备的知识点，笔记整理摘要">
@@ -354,8 +355,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-20T15:49:27+08:00">
-                2018-10-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-01T15:49:27+08:00">
+                2018-11-01
               </time>
             
 
@@ -370,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-04T17:48:06+08:00">
-                2018-11-04
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-05T18:15:59+08:00">
+                2018-11-05
               </time>
             
           </span>
@@ -452,10 +453,18 @@
 
       
         <h3 id="Java集合框架"><a href="#Java集合框架" class="headerlink" title="Java集合框架"></a>Java集合框架</h3><p>Collection<br>├List<br>│├LinkedList<br>│├ArrayList<br>│└Vector<br>│　└Stack<br>└Set<br>└Queue<br>Map<br>├Hashtable<br>├HashMap<br>└WeakHashMap</p>
-<p>快速随机访问：</p>
+<p>重点要分清数组与链表的特点：</p>
+<p>快速随机访问(RandomAccess)：</p>
+<p>RandomAccess 接口是一个标志接口，本身并没有提供任何方法，任务凡是通过调用 RandomAccess 接口的对象都可以认为是支持快速随机访问的对象。此接口的主要目的是标识那些可支持快速随机访问的 List 实现。任何一个基于数组的 List 实现都实现了 RaodomAccess 接口，而基于链表的实现则都没有。因为只有数组能够进行快速的随机访问，而对链表的随机访问需要进行链表的遍历。因此，此接口的好处是，可以在应用程序中知道正在处理的 List 对象是否可以进行快速随机访问，从而针对不同的 List 进行不同的操作，以提高程序的性能。</p>
 <p>线程安全：</p>
+<p>ArrayList 与 LinkedList 对比，</p>
+<p>HashMap取值的时间复杂度</p>
+<p>平衡树、红黑树</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/2243690-9cd9c896e0d512ed.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/643/format/webp" alt=""></p>
-<h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><p><img src="https://user-gold-cdn.xitu.io/2018/9/11/165c62ed260e1731?imageslim" alt=""></p>
+<h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><p><strong> 此处所有的JVM讨论都是基于JDK自带的Hotspot的JVM。 </strong></p>
+<h4 id="客户模式或服务器模式"><a href="#客户模式或服务器模式" class="headerlink" title="客户模式或服务器模式"></a>客户模式或服务器模式</h4><p>JIT 编译器在运行程序时有两种编译模式可以选择，并且其会在运行时决定使用哪一种以达到最优性能。这两种编译模式的命名源自于命令行参数（eg: -client 或者 -server）。JVM Server 模式与 client 模式启动，最主要的差别在于：-server 模式启动时，速度较慢，但是一旦运行起来后，性能将会有很大的提升。原因是：当虚拟机运行在-client 模式的时候，使用的是一个代号为 C1 的轻量级编译器，而-server 模式启动的虚拟机采用相对重量级代号为 C2 的编译器。C2 比 C1 编译器编译的相对彻底，服务起来之后，性能更高。</p>
+<p>通过 java -version 命令行可以直接查看当前系统使用的是 client 还是 server 模式。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/9/11/165c62ed260e1731?imageslim" alt=""></p>
 <p>JVM内存模型：</p>
 <p>按照JVM规范，JAVA虚拟机在运行时会管理以下的内存区域：  </p>
 <ul>
@@ -463,11 +472,29 @@
 <li>JAVA虚拟机栈：Java方法执行的内存模型，每个Java方法的执行对应着一个栈帧的进栈和出栈的操作。  </li>
 <li>本地方法栈：类似“ JAVA虚拟机栈 ”，但是为native方法的运行提供内存环境。  </li>
 <li>JAVA堆：对象内存分配的地方，内存垃圾回收的主要区域，所有线程共享。可分为新生代，老生代。  </li>
-<li>方法区：用于存储已经被JVM加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。Hotspot中的“永久代”。  </li>
+<li>方法区：用于存储已经被JVM加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。Hotspot中的“永久代”。  <strong> 注意：这里的永久代(PermanentSpace)针对jdk1.7之前的版本，JDK1.7常量已经放在Heap分区，JDK8中则完全移除了PermanentSpace，InternedStrings也被放到了MetaSpace中 </strong></li>
 <li>运行时常量池：方法区的一部分，存储常量信息，如各种字面量、符号引用等。  </li>
 <li>直接内存：并不是JVM运行时数据区的一部分， 可直接访问的内存， 比如NIO会用到这部分。</li>
 </ul>
 <p>按照JVM规范，除了程序计数器不会抛出OOM外，其他各个内存区域都可能会抛出OOM。</p>
+<h4 id="判断对象c"><a href="#判断对象c" class="headerlink" title="判断对象c"></a>判断对象c</h4><p>三种GC算法：</p>
+<h4 id="标记-清除算法-Mark-sweep-（老年代）"><a href="#标记-清除算法-Mark-sweep-（老年代）" class="headerlink" title="标记-清除算法(Mark-sweep) （老年代）"></a>标记-清除算法(Mark-sweep) （老年代）</h4><p>分为“标记”和“清除”两个阶段：首先标记出所有需要回收的对象，在标记完成后统一回收所有被标记对象。<br>缺点：<br>1）产生大量不连续的内存碎片<br>2）标记和清除效率都不高</p>
+<h4 id="复制算法-Copying-（新生代）"><a href="#复制算法-Copying-（新生代）" class="headerlink" title="复制算法(Copying) （新生代）"></a>复制算法(Copying) （新生代）</h4><p>它将可用内存按照容量划分为大小相等的两块，每次只使用其中一块。当这一块的内存用完了，则就将还存活的对象复制到另一块上面，然后再把已经使用过的内存空间一次清理掉。使得每次都是对整个半区进行内存回收。</p>
+<p>优点：<br>1）不会出现内存碎片。<br>2）只需移动堆顶指针，按顺序分配内存即可，实现简单，运行高效。</p>
+<p>缺点：<br>1）将内存缩小为原来的一半。<br>2）在对象存活率较高时会进行较多复制操作，效率较低。</p>
+<p>商业虚拟机的分配担保机制：<br>将内存分为一块较大的 eden 空间和两块较小的 survivor 空间，默认比例是 8:1:1，即每次新生代中可用内存空间为整个新生代容量的 90%，每次使用 eden 和其中一个 survivour。当回收时，将 eden 和 survivor 中还存活的对象一次性复制到另外一块 survivor 上，最后清理掉 eden 和刚才用过的 survivor，若另外一块 survivor 空间没有足够内存空间存放上次新生代收集下来的存活对象时，这些对象将直接通过分配担保机制进入老年代。</p>
+<h4 id="标记-整理算法-Mark-Compact-（老年代）"><a href="#标记-整理算法-Mark-Compact-（老年代）" class="headerlink" title="标记-整理算法(Mark-Compact) （老年代）"></a>标记-整理算法(Mark-Compact) （老年代）</h4><p>标记过程和“标记-清除”算法一样，但后续步骤不是直接对可回收对象进行清除，而是让所有存活对象都向一端移动，然后直接清理掉端边界以外的内存。</p>
+<p>七种收集器：</p>
+<ol>
+<li>Serial （复制算法）</li>
+<li>ParNew （复制算法）</li>
+<li>Parallel Scavenge （复制算法）</li>
+<li>CMS() （标记-清除）</li>
+<li>Serial Old(MSC) （标记-整理）</li>
+<li>Parallel Old （标记-整理）</li>
+<li>G1 （分块 总体看是标记-整理 每块都是复制算法）</li>
+</ol>
+<p><img src="https://images2018.cnblogs.com/blog/1170065/201806/1170065-20180623154603452-99143360.png" alt=""></p>
 <p>最常见的OOM情况有以下三种：</p>
 <ul>
 <li>java.lang.OutOfMemoryError: Java heap space ——&gt;java堆内存溢出，此种情况最常见，一般由于内存泄露或者堆的大小设置不当引起。对于内存泄露，需要通过内存监控软件查找程序中的泄露代码，而堆大小可以通过虚拟机参数-Xms,-Xmx等修改。   </li>
@@ -485,6 +512,26 @@
 <li>jhat：JDK自带的java heap analyze tool，可以将堆中的对象以html的形式显示出来，包括对象的数量，大小等等，并支持对象查询语言OQL，分析相关的应用后，可以通过<a href="http://localhost:7000来访问分析结果。不推荐使用，因为在实际的排查过程中，一般是先在生产环境" target="_blank" rel="noopener">http://localhost:7000来访问分析结果。不推荐使用，因为在实际的排查过程中，一般是先在生产环境</a> dump出文件来，然后拉到自己的开发机器上分析，所以，不如采用高级的分析工具比如前面的mat来的高效。</li>
 <li>Plumbr</li>
 </ul>
+<h4 id="如何减少GC出现的次数："><a href="#如何减少GC出现的次数：" class="headerlink" title="如何减少GC出现的次数："></a>如何减少GC出现的次数：</h4><ol>
+<li><p>对象不用时显示置null。</p>
+</li>
+<li><p>少用System.gc()。</p>
+</li>
+<li><p>尽量少用静态变量。</p>
+</li>
+<li><p>尽量使用StringBuffer，而不用String累加字符串。</p>
+</li>
+<li><p>分散对象创建或删除的时间。</p>
+</li>
+<li><p>少用finalize函数。</p>
+</li>
+<li><p>如果需要使用经常用到的图片，可以使用软引用类型，它可以尽可能将图片保存在内存中，供程序调用，而不引起OOM。</p>
+</li>
+<li><p>能用基本类型就不用基本类型封装类。</p>
+</li>
+<li><p>增大-Xmx的值。</p>
+</li>
+</ol>
 <h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3><blockquote>
 <p>java的反射机制主要是指程序可以访问，检测和修改它本身状态或行为的一种能力，并能根据自身行为的状态和结果，调整或修改应用所描述行为的状态和相关的语义。<br>反射是java中一种强大的工具，能够使我们很方便的创建灵活的代码，这些代码可以再运行时装配，无需在组件之间进行源代码链接。但是反射使用不当会成本很高！</p>
 </blockquote>
@@ -519,6 +566,7 @@
 <li>Core Container:核心容器，从核心俩字我们可以看出，这是Spring最重要的部分。主要的功能是实现了控制反转（IOC）与依赖注入（DI）、Bean配置、加载以及生命周期的管理。</li>
 </ul>
 </blockquote>
+<h3 id="Spring-IOC"><a href="#Spring-IOC" class="headerlink" title="Spring IOC"></a>Spring IOC</h3><p>控制反转，依赖注入<br>Factory生成代理bean时机，依赖注入时机</p>
 <h3 id="Spring-cloud"><a href="#Spring-cloud" class="headerlink" title="Spring cloud"></a>Spring cloud</h3><p><img src="https://ws1.sinaimg.cn/large/b20a1329ly1fww64vx2xnj21aa0o54qs.jpg" alt=""><br>了解Spring cloud之前需要先了解下什么是微服务</p>
 <blockquote>
 <p>微服务（Micro Service）:微服务是一种架构风格，一个大型复杂软件应用由一个或多个微服务组成。系统中的各个微服务可被独立部署，各个微服务之间是松耦合的。每个微服务仅关注于完成一件任务并很好地完成该任务。在所有情况下，每个任务代表着一个小的业务能力。   </p>
@@ -539,7 +587,85 @@
 <li>Zuul（代理机制）：安全认证、动态路由、流量管理、服务器负载均衡   </li>
 <li>Config（配置管理）：管理所有微服务的配置文件（GIT/SVN）。  </li>
 </ul>
-<h3 id="Dobbo"><a href="#Dobbo" class="headerlink" title="Dobbo"></a>Dobbo</h3>
+<h3 id="Dobbo"><a href="#Dobbo" class="headerlink" title="Dobbo"></a>Dobbo</h3><h3 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h3><p>善用 explain执行计划</p>
+<h4 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h4><h4 id="事务属性（ACID）"><a href="#事务属性（ACID）" class="headerlink" title="事务属性（ACID）"></a>事务属性（ACID）</h4><ul>
+<li>原子性（Atomicity）：事务是一个原子操作单元。在当时原子是不可分割的最小元素，其对数据的修改，要么全部成功，要么全部都不成功。</li>
+<li>一致性（Consistent）：事务开始到结束的时间段内，数据都必须保持一致状态。</li>
+<li>隔离性（Isolation）：数据库系统提供一定的隔离机制，保证事务在不受外部并发操作影响的”独立”环境执行。</li>
+<li><p>持久性（Durable）：事务完成后，它对于数据的修改是永久性的，即使出现系统故障也能够保持。</p>
+<h4 id="事务常见问题"><a href="#事务常见问题" class="headerlink" title="事务常见问题"></a>事务常见问题</h4></li>
+<li><p>更新丢失（Lost Update）<br>原因：当多个事务选择同一行操作，并且都是基于最初选定的值，由于每个事务都不知道其他事务的存在，就会发生更新覆盖的问题。类比github提交冲突。</p>
+</li>
+<li><p>脏读（Dirty Reads）<br>原因：事务A读取了事务B已经修改但尚未提交的数据。若事务B回滚数据，事务A的数据存在不一致性的问题。</p>
+</li>
+<li><p>不可重复读（Non-Repeatable Reads）<br>原因：事务A第一次读取最初数据，第二次读取事务B已经提交的修改或删除数据。导致两次读取数据不一致。不符合事务的隔离性。</p>
+</li>
+<li><p>幻读（Phantom Reads）<br>原因：事务A根据相同条件第二次查询到事务B提交的新增数据，两次数据结果集不一致。不符合事务的隔离性。</p>
+</li>
+</ul>
+<p>幻读和脏读有点类似<br>脏读是事务B里面修改了数据，<br>幻读是事务B里面新增了数据。</p>
+<h4 id="隔离级别"><a href="#隔离级别" class="headerlink" title="隔离级别"></a>隔离级别</h4><table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>读数据一致性</th>
+<th>脏读</th>
+<th>不可重复 读</th>
+<th>幻读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>未提交读(Read uncommitted)</td>
+<td>最低级别</td>
+<td>是</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr>
+<td>已提交读(Read committed)</td>
+<td>语句级</td>
+<td>否</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr>
+<td>可重复读(Repeatable read)</td>
+<td>事务级</td>
+<td>否</td>
+<td>否</td>
+<td>是</td>
+</tr>
+<tr>
+<td>可序列化(Serializable)</td>
+<td>最高级别，事务级</td>
+<td>否</td>
+<td>否</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+<h4 id="行锁与表锁"><a href="#行锁与表锁" class="headerlink" title="行锁与表锁"></a>行锁与表锁</h4><h4 id="行锁"><a href="#行锁" class="headerlink" title="行锁"></a>行锁</h4><p>行锁的劣势：开销大；加锁慢；会出现死锁<br>行锁的优势：锁的粒度小，发生锁冲突的概率低；处理并发的能力强<br>加锁的方式：自动加锁。对于UPDATE、DELETE和INSERT语句，InnoDB会自动给涉及数据集加排他锁；对于普通SELECT语句，InnoDB不会加任何锁；当然我们也可以显示的加锁：<br>共享锁：’select <em> from tableName where … + lock in share more’<br>排他锁：’select </em> from tableName where … + for update’<br>InnoDB和MyISAM的最大不同点有两个：一，InnoDB支持事务(transaction)；二，默认采用行级锁。加锁可以保证事务的一致性，  </p>
+<ul>
+<li>间隙锁(GAP) (Next-Key锁)</li>
+<li>排他锁 也称写锁，独占锁。当前写操作没有完成前，它会阻断其他写锁和读锁。</li>
+<li>共享锁 也称读锁，多用于判断数据是否存在，多个读操作可以同时进行而不会互相影响。当如果事务对读锁进行修改操作，很可能会造成死锁。</li>
+</ul>
+<h4 id="表锁"><a href="#表锁" class="headerlink" title="表锁"></a>表锁</h4><ul>
+<li><p>共享读锁<br>不会阻塞其他进程对同一表的读操作，但会阻塞对同一表的写操作。只有当读锁释放后，才能执行其他进程的写操作。在锁释放前不能取其他表。</p>
+</li>
+<li><p>独占写锁<br>会阻塞其他进程对同一表的读和写操作，只有当写锁释放后，才会执行其他进程的读写操作。在锁释放前不能写其他表。</p>
+</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ol>
+<li>InnoDB 支持表锁和行锁，使用索引作为检索条件修改数据时采用行锁，否则采用表锁。</li>
+<li>InnoDB 自动给修改操作加锁，给查询操作不自动加锁</li>
+<li>行锁可能因为未使用索引而升级为表锁，所以除了检查索引是否创建的同时，也需要通过explain执行计划查询索引是否被实际使用。</li>
+<li>行锁相对于表锁来说，优势在于高并发场景下表现更突出，毕竟锁的粒度小。</li>
+<li>当表的大部分数据需要被修改，或者是多表复杂关联查询时，建议使用表锁优于行锁。</li>
+<li>为了保证数据的一致完整性，任何一个数据库都存在锁定机制。锁定机制的优劣直接影响到一个数据库的并发处理能力和性能。</li>
+</ol>
+
       
     </div>
     
@@ -620,8 +746,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Java/elastic-job-with-spring-boot-demo.html" rel="next" title="Spring Boot整合Elastic Job简单实践Demo">
-                <i class="fa fa-chevron-left"></i> Spring Boot整合Elastic Job简单实践Demo
+              <a href="/Java/Prepare-For-Java-Interview.html" rel="next" title="面试准备大纲">
+                <i class="fa fa-chevron-left"></i> 面试准备大纲
               </a>
             
           </div>
@@ -629,10 +755,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Java/Prepare-For-Java-Interview.html" rel="prev" title="面试准备大纲">
-                面试准备大纲 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -787,7 +909,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java集合框架"><span class="nav-number">1.</span> <span class="nav-text">Java集合框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM"><span class="nav-number">2.</span> <span class="nav-text">JVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反射"><span class="nav-number">3.</span> <span class="nav-text">反射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOP"><span class="nav-number">4.</span> <span class="nav-text">AOP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring"><span class="nav-number">5.</span> <span class="nav-text">Spring</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-cloud"><span class="nav-number">6.</span> <span class="nav-text">Spring cloud</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dobbo"><span class="nav-number">7.</span> <span class="nav-text">Dobbo</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java集合框架"><span class="nav-number">1.</span> <span class="nav-text">Java集合框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM"><span class="nav-number">2.</span> <span class="nav-text">JVM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#客户模式或服务器模式"><span class="nav-number">2.1.</span> <span class="nav-text">客户模式或服务器模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断对象c"><span class="nav-number">2.2.</span> <span class="nav-text">判断对象c</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标记-清除算法-Mark-sweep-（老年代）"><span class="nav-number">2.3.</span> <span class="nav-text">标记-清除算法(Mark-sweep) （老年代）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复制算法-Copying-（新生代）"><span class="nav-number">2.4.</span> <span class="nav-text">复制算法(Copying) （新生代）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标记-整理算法-Mark-Compact-（老年代）"><span class="nav-number">2.5.</span> <span class="nav-text">标记-整理算法(Mark-Compact) （老年代）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何减少GC出现的次数："><span class="nav-number">2.6.</span> <span class="nav-text">如何减少GC出现的次数：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反射"><span class="nav-number">3.</span> <span class="nav-text">反射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOP"><span class="nav-number">4.</span> <span class="nav-text">AOP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring"><span class="nav-number">5.</span> <span class="nav-text">Spring</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-IOC"><span class="nav-number">6.</span> <span class="nav-text">Spring IOC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-cloud"><span class="nav-number">7.</span> <span class="nav-text">Spring cloud</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dobbo"><span class="nav-number">8.</span> <span class="nav-text">Dobbo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL"><span class="nav-number">9.</span> <span class="nav-text">SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事务"><span class="nav-number">9.1.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务属性（ACID）"><span class="nav-number">9.2.</span> <span class="nav-text">事务属性（ACID）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务常见问题"><span class="nav-number">9.3.</span> <span class="nav-text">事务常见问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#隔离级别"><span class="nav-number">9.4.</span> <span class="nav-text">隔离级别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#行锁与表锁"><span class="nav-number">9.5.</span> <span class="nav-text">行锁与表锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#行锁"><span class="nav-number">9.6.</span> <span class="nav-text">行锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表锁"><span class="nav-number">9.7.</span> <span class="nav-text">表锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">9.8.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
             
 
           </div>
