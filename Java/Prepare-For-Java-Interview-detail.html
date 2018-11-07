@@ -106,7 +106,7 @@
 <meta property="og:image" content="https://image-static.segmentfault.com/427/046/4270467106-5a519b5c0dec0_articlex">
 <meta property="og:image" content="https://image-static.segmentfault.com/905/020/905020101-5a5194c96a610_articlex">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/b20a1329ly1fww64vx2xnj21aa0o54qs.jpg">
-<meta property="og:updated_time" content="2018-11-06T19:06:10.773Z">
+<meta property="og:updated_time" content="2018-11-07T02:37:18.232Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试准备笔记整理">
 <meta name="twitter:description" content="java面试需要准备的知识点，笔记整理摘要">
@@ -371,7 +371,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T03:06:10+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T10:37:18+08:00">
                 2018-11-07
               </time>
             
@@ -687,6 +687,7 @@
 <li><p>独占写锁<br>会阻塞其他进程对同一表的读和写操作，只有当写锁释放后，才会执行其他进程的读写操作。在锁释放前不能写其他表。</p>
 </li>
 </ul>
+<p>使用乐观锁更新的时候不加锁，当提交更新时需要判断数据是否已经被修改（AND number=#{number}），只有在 number等于上一次查询到的number时 才提交更新。<br>有 CAS思想（Compare And Set）比较，没有冲突则修改</p>
 <h4 id="MySql两种常见引擎："><a href="#MySql两种常见引擎：" class="headerlink" title="MySql两种常见引擎："></a>MySql两种常见引擎：</h4><p>InnoDB 和 MyISAM<br>两者都使用B+Tree作为索引的数据结构，区别是InnoDB支持事务，而MyISAM不支持；<br>InnoDB 和 MyISAM之间的区别：<br>1&gt;.InnoDB支持事物，而MyISAM不支持事物</p>
 <p>2&gt;.InnoDB支持行级锁，而MyISAM支持表级锁</p>
 <p>3&gt;.InnoDB支持MVCC, 而MyISAM不支持</p>
@@ -723,6 +724,24 @@
 <li>查询的结束返回的是少量的结果集；  </li>
 <li>order by 子句中使用了该列。  </li>
 </ol>
+<h4 id="hash索引"><a href="#hash索引" class="headerlink" title="hash索引"></a>hash索引</h4><p>hash索引，相比较于B树而言，不需要从根节点到叶子节点的遍历，可以一次定位到位置，查询效率更高，但缺点也很明显</p>
+<ul>
+<li><p>仅能满足”=”,”IN”和”&lt;=&gt;”查询，不能使用范围查询</p>
+</li>
+<li><p>因为是通过hash值进行计算，所以只能精确查询，hash值是没什么规律的，不能保证顺序和原来一致，所以范围查询不行</p>
+</li>
+<li><p>无法进行排序</p>
+</li>
+</ul>
+<p>原因同上</p>
+<ul>
+<li><p>不支持部分索引</p>
+</li>
+<li><p>hash值的计算，是根据完整的几个索引列计算，如果少了其中一个乃至几个，这个hash值就没法计算了</p>
+</li>
+<li><p>hash碰撞</p>
+</li>
+</ul>
 <p>mysql保证事务的隔离性主要通过Lock(锁)和MVCC(multiple version concurrent control 多版本并发控制)</p>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ol>
 <li>InnoDB 支持表锁和行锁，使用索引作为检索条件修改数据时采用行锁，否则采用表锁。</li>
@@ -733,7 +752,56 @@
 <li>为了保证数据的一致完整性，任何一个数据库都存在锁定机制。锁定机制的优劣直接影响到一个数据库的并发处理能力和性能。</li>
 </ol>
 <h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><p>两种重要的锁：synchronized lock</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>synchronized</th>
+<th>Lock</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>存在层次</td>
+<td>Java的关键字，在jvm层面上</td>
+<td>是一个类</td>
+</tr>
+<tr>
+<td>锁的释放</td>
+<td>1、以获取锁的线程执行完同步代码，释放锁 2、线程执行发生异常，jvm会让线程释放锁</td>
+<td>在finally中必须释放锁，不然容易造成线程死锁</td>
+</tr>
+<tr>
+<td>锁的获取</td>
+<td>假设A线程获得锁，B线程等待。如果A线程阻塞，B线程会一直等待</td>
+<td>分情况而定，Lock有多个锁获取的方式，具体下面会说道，大致就是可以尝试获得锁，线程可以不用一直等待</td>
+</tr>
+<tr>
+<td>锁状态</td>
+<td>无法判断</td>
+<td>可以判断</td>
+</tr>
+<tr>
+<td>锁类型</td>
+<td>可重入 不可中断 非公平</td>
+<td>可重入 可判断 可公平（两者皆可）</td>
+</tr>
+<tr>
+<td>性能</td>
+<td>少量同步</td>
+<td>大量同步</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>synchronized关键字可以作为函数的修饰符，也可作为函数内的语句，也就是平时说的同步方法和同步语句块。如果 再细的分类，synchronized可作用于instance变量、object reference（对象引用）、static函数和class literals(类名称字面常量)身上。</li>
+<li>无论synchronized关键字加在方法上还是对象上，它取得的锁都是对象，而不是把一段代码或函数当作锁――而且同步方法很可能还会被其他线程的对象访问。</li>
+<li>每个对象只有一个锁（lock）与之相关联。</li>
+</ul>
 <p>volatile 轻量级，只保证修改同步和可见性，不保证线程安全</p>
+<p>atomic 乐观锁 AtomicInteger 通过CAS（Compare And Set）操作实现线程安全的自增。<br>CAS 可能会带来ABA问题</p>
+<p>LongAdder 思路类似于ConcurrentHashMap，Cell数组分块加锁</p>
+<p>AQS框架（AbstractQueuedSynchronizer的简写，中文名应该叫抽象队列同步器）</p>
 <h3 id="IO模型"><a href="#IO模型" class="headerlink" title="IO模型"></a>IO模型</h3><p>BIO，NIO，AIO</p>
 
       
@@ -979,7 +1047,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java集合框架"><span class="nav-number">1.</span> <span class="nav-text">Java集合框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM"><span class="nav-number">2.</span> <span class="nav-text">JVM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#客户模式或服务器模式"><span class="nav-number">2.1.</span> <span class="nav-text">客户模式或服务器模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断对象存活状态"><span class="nav-number">2.2.</span> <span class="nav-text">判断对象存活状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标记-清除算法-Mark-sweep-（老年代）"><span class="nav-number">2.3.</span> <span class="nav-text">标记-清除算法(Mark-sweep) （老年代）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复制算法-Copying-（新生代）"><span class="nav-number">2.4.</span> <span class="nav-text">复制算法(Copying) （新生代）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标记-整理算法-Mark-Compact-（老年代）"><span class="nav-number">2.5.</span> <span class="nav-text">标记-整理算法(Mark-Compact) （老年代）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何减少GC出现的次数："><span class="nav-number">2.6.</span> <span class="nav-text">如何减少GC出现的次数：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类加载的时机"><span class="nav-number">2.7.</span> <span class="nav-text">类加载的时机</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反射"><span class="nav-number">3.</span> <span class="nav-text">反射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOP"><span class="nav-number">4.</span> <span class="nav-text">AOP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring"><span class="nav-number">5.</span> <span class="nav-text">Spring</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-IOC"><span class="nav-number">6.</span> <span class="nav-text">Spring IOC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-cloud"><span class="nav-number">7.</span> <span class="nav-text">Spring cloud</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dobbo"><span class="nav-number">8.</span> <span class="nav-text">Dobbo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL"><span class="nav-number">9.</span> <span class="nav-text">SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事务"><span class="nav-number">9.1.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务属性（ACID）"><span class="nav-number">9.2.</span> <span class="nav-text">事务属性（ACID）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回滚日志（undo-log）和重做日志（redo-log）"><span class="nav-number">9.3.</span> <span class="nav-text">回滚日志（undo log）和重做日志（redo log）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务常见问题"><span class="nav-number">9.4.</span> <span class="nav-text">事务常见问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#隔离级别：MySQL默认的是可重复读的隔离级别"><span class="nav-number">9.5.</span> <span class="nav-text">隔离级别：MySQL默认的是可重复读的隔离级别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#行锁与表锁"><span class="nav-number">9.6.</span> <span class="nav-text">行锁与表锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#行锁"><span class="nav-number">9.7.</span> <span class="nav-text">行锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表锁"><span class="nav-number">9.8.</span> <span class="nav-text">表锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MySql两种常见引擎："><span class="nav-number">9.9.</span> <span class="nav-text">MySql两种常见引擎：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MVCC"><span class="nav-number">9.10.</span> <span class="nav-text">MVCC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#聚集索引和非聚集索引"><span class="nav-number">9.11.</span> <span class="nav-text">聚集索引和非聚集索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">9.12.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程"><span class="nav-number">10.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IO模型"><span class="nav-number">11.</span> <span class="nav-text">IO模型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java集合框架"><span class="nav-number">1.</span> <span class="nav-text">Java集合框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM"><span class="nav-number">2.</span> <span class="nav-text">JVM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#客户模式或服务器模式"><span class="nav-number">2.1.</span> <span class="nav-text">客户模式或服务器模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断对象存活状态"><span class="nav-number">2.2.</span> <span class="nav-text">判断对象存活状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标记-清除算法-Mark-sweep-（老年代）"><span class="nav-number">2.3.</span> <span class="nav-text">标记-清除算法(Mark-sweep) （老年代）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复制算法-Copying-（新生代）"><span class="nav-number">2.4.</span> <span class="nav-text">复制算法(Copying) （新生代）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标记-整理算法-Mark-Compact-（老年代）"><span class="nav-number">2.5.</span> <span class="nav-text">标记-整理算法(Mark-Compact) （老年代）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何减少GC出现的次数："><span class="nav-number">2.6.</span> <span class="nav-text">如何减少GC出现的次数：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类加载的时机"><span class="nav-number">2.7.</span> <span class="nav-text">类加载的时机</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反射"><span class="nav-number">3.</span> <span class="nav-text">反射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOP"><span class="nav-number">4.</span> <span class="nav-text">AOP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring"><span class="nav-number">5.</span> <span class="nav-text">Spring</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-IOC"><span class="nav-number">6.</span> <span class="nav-text">Spring IOC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-cloud"><span class="nav-number">7.</span> <span class="nav-text">Spring cloud</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dobbo"><span class="nav-number">8.</span> <span class="nav-text">Dobbo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL"><span class="nav-number">9.</span> <span class="nav-text">SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事务"><span class="nav-number">9.1.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务属性（ACID）"><span class="nav-number">9.2.</span> <span class="nav-text">事务属性（ACID）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回滚日志（undo-log）和重做日志（redo-log）"><span class="nav-number">9.3.</span> <span class="nav-text">回滚日志（undo log）和重做日志（redo log）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务常见问题"><span class="nav-number">9.4.</span> <span class="nav-text">事务常见问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#隔离级别：MySQL默认的是可重复读的隔离级别"><span class="nav-number">9.5.</span> <span class="nav-text">隔离级别：MySQL默认的是可重复读的隔离级别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#行锁与表锁"><span class="nav-number">9.6.</span> <span class="nav-text">行锁与表锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#行锁"><span class="nav-number">9.7.</span> <span class="nav-text">行锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表锁"><span class="nav-number">9.8.</span> <span class="nav-text">表锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MySql两种常见引擎："><span class="nav-number">9.9.</span> <span class="nav-text">MySql两种常见引擎：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MVCC"><span class="nav-number">9.10.</span> <span class="nav-text">MVCC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#聚集索引和非聚集索引"><span class="nav-number">9.11.</span> <span class="nav-text">聚集索引和非聚集索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hash索引"><span class="nav-number">9.12.</span> <span class="nav-text">hash索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">9.13.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程"><span class="nav-number">10.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IO模型"><span class="nav-number">11.</span> <span class="nav-text">IO模型</span></a></li></ol></div>
             
 
           </div>
